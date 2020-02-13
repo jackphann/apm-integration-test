@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['ELASTIC_APM'] = {
   # Set required service name. Allowed characters:
   # a-z, A-Z, 0-9, -, _, and space
-  'SERVICE_NAME': 'querychatai-cai',
+  'SERVICE_NAME': 'test',
 
   # Use if APM Server requires a token
   'SECRET_TOKEN': '',
@@ -22,9 +22,15 @@ app.config['ELASTIC_APM'] = {
   # Allowed values: development/staging/production
   'ENVIRONMENT': 'development',
 
+  'DISABLE_METRICS': "*.cpu.*,*.memory.*"
+
   # If app is in debug mode, the agent won’t send any data to the APM Server.
   # If you want to send data to APM server in debug mode, please uncomment the following line.
   # 'DEBUG': True
+
+  # Independent from debug mode, uncomment the following line to not send and data to APM Server.
+  # 'DISABLE_SEND': False
+
 }
 
 apm = ElasticAPM(app, logging=logging.ERROR)
